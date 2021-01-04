@@ -2,14 +2,13 @@ from selenium import webdriver
 from sys import platform
 import os
 
+from selenium.webdriver.chrome.options import Options
+
+
 class TestConfiguration:
-    
+
     def get_driver(self):
-        if platform == "linux" or platform == "linux2":
-            return webdriver.Chrome(
-                os.path.join(os.getcwd(),
-                    "driver","executable","chromedriver"))
-        elif platform == "win32":
-            return webdriver.Chrome(
-                os.path.join(os.getcwd(),
-                    "driver","executable","chromedriver.exe"))
+        options = Options()
+        options.binary_location = "C:\Program Files\Google\Chrome\Application\chrome.exe"
+        driver = webdriver.Chrome(chrome_options=options, executable_path=r'driver/executable/chromedriver.exe')
+        return driver
